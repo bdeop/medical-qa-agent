@@ -26,7 +26,7 @@ git clone <repo-url>
 cd medical_qa_agent
 ```
 
-### Step 2: Set Up Virtual Environments
+### Step 2: Set Up Virtual Environment
 
 ```bash
 python3 -m venv myenv
@@ -38,6 +38,8 @@ deactivate
 
 ### Step 3: Download and Place Synthea CSVs
 Put `patients.csv` and `conditions.csv` into the `data/` folder.
+You can download them from https://synthea.mitre.org/downloads 
+Download this dataset: https://synthetichealth.github.io/synthea-sample-data/downloads/latest/synthea_sample_data_csv_latest.zip
 
 ### Step 4: OpenAI API Key
 Make sure to set your OpenAI API key as an environment variable:
