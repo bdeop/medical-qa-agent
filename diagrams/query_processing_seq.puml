@@ -1,0 +1,14 @@
+@startuml
+actor User
+participant UI as "Streamlit UI"
+participant Retriever as "ChromaDB"
+participant Embedding as "OpenAI Embedding"
+participant LLM as "GPT-4o"
+
+User -> UI : Enters query
+UI -> Retriever : Retrieve top-k documents
+Retriever -> Embedding : Match with embedded vectors
+UI -> LLM : Send query with retrieved context
+LLM -> UI : Return generated answer
+UI -> User : Display answer and source documents
+@enduml
