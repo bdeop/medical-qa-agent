@@ -37,7 +37,7 @@ deactivate
 ```
 
 ### Step 3: Download and Place Synthea CSVs
-Put `patients.csv` and `conditions.csv` into the `data/` folder.
+Put `patients.csv`, `observations.csv` and `conditions.csv` into the `data/` folder.
 You can download them from https://synthea.mitre.org/downloads 
 Download this dataset: https://synthetichealth.github.io/synthea-sample-data/downloads/latest/synthea_sample_data_csv_latest.zip
 
