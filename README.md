@@ -77,11 +77,14 @@ source myenv/bin/activate
 
 
 ## Example Questions
-- "What conditions does patient Donnell534 Dicki44 have?"
-- "List all diagnoses for patient Donnell534 Dicki44."
 - The patient ID of Donnell534 Dicki44 is 6ce0bda7-716f-c904-cdc8-39076db16016
-- What are all the known medical conditions of patient 6ce0bda7-716f-c904-cdc8-39076db16016? Think step-by-step and explain how you find them from their record.
 - What are all the known medical conditions of patient Donnell534 Dicki44 ? Also provide the total count of conditions.
 - Based on the patient’s age, gender, and condition history, is this patient Donnell534 Dicki44 at high risk of cardiovascular disease? Explain step-by-step.
 - Why might the patient Donnell534 Dicki44 be prescribed Metformin? Think aloud based on their condition history.
 - Summarize the patient Donnell534 Dicki44's medical history in chronological order. Think step-by-step.
+- Summarize the current health conditions and diagnostics of patient Ezequiel972 Hyatt152
+- Suggest a preventive healthcare plan for patient Ezequiel972 Hyatt152
+- explain the latest observations for the patient Josh874 King743
+- What are all the known medical conditions of patient Donnell534 Dicki44 ? on basis of what diagnostics results can we conclude that this patient has diabetes ?
+- Suggest a preventive health care plan for patient Donnell534 Dicki44 
+- 

@@ -25,7 +25,7 @@ tab1, tab2 = st.tabs(["💬 Ask Questions", "📊 Patient Labs & Timeline"])
 
 # --- Tab 1: QA Interface ---
 with tab1:
-    st.subheader("💬 Ask a medical question about a synthetic patient")
+    st.subheader("💬 Ask a medical question about a patient")
     with st.form("qa_form"):
         question = st.text_area("Enter your question here:", height=100)
         submit = st.form_submit_button("Submit")
@@ -36,10 +36,10 @@ with tab1:
             st.subheader("💡 Answer")
             st.success(result["result"])
 
-            st.subheader("📄 Source Documents")
-            for doc in result["source_documents"]:
-                st.markdown(f"- `Patient ID:` `{doc.metadata.get('patient_id', 'N/A')}`")
-                st.code(doc.page_content[:500] + "...")
+            # st.subheader("📄 Source Documents")
+            # for doc in result["source_documents"]:
+            #     st.markdown(f"- `Patient ID:` `{doc.metadata.get('patient_id', 'N/A')}`")
+            #     st.code(doc.page_content[:500] + "...")
 
 # --- Tab 2: Labs & Timeline Viewer ---
 with tab2:
