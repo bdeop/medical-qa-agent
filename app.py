@@ -3,7 +3,7 @@ import pandas as pd
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from clarifier_chain import get_clarification_chain
 from visualization import plot_medical_timeline, format_labs_vitals
 
