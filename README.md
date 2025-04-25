@@ -87,4 +87,5 @@ source myenv/bin/activate
 - explain the latest observations for the patient Josh874 King743
 - What are all the known medical conditions of patient Donnell534 Dicki44 ? on basis of what diagnostics results can we conclude that this patient has diabetes ?
 - Suggest a preventive health care plan for patient Donnell534 Dicki44 
-- 
+- Summarize the health and Create a preventive health plan for patient Donnell534 Dicki44 looking at the health conditions and the observations of this patient.
+- Why is this patient Donnell534 Dicki44 at risk for cardiovascular complications? 

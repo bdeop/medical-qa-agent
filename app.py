@@ -18,7 +18,7 @@ llm = ChatOpenAI(model="gpt-4o", temperature=0.2)
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever, return_source_documents=True)
 
 # Clarifier (optional enhancement for future use)
-clarifier = get_clarification_chain()
+#clarifier = get_clarification_chain()
 
 # UI Tabs
 tab1, tab2 = st.tabs(["💬 Ask Questions", "📊 Patient Labs & Timeline"])
