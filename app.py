@@ -1,62 +1,53 @@
-# import streamlit as st
-# from langchain_openai import ChatOpenAI
-# from langchain.chains import RetrievalQA
-# from langchain_chroma import Chroma
-# from langchain_openai import OpenAIEmbeddings
-#
-# st.set_page_config(page_title="🩺 Medical QA Agent", layout="centered")
-# st.title("🩺 Medical Question Answering Agent (Synthea)")
-#
-# embedding = OpenAIEmbeddings()
-# vectordb = Chroma(persist_directory="chroma_store", embedding_function=embedding)
-# retriever = vectordb.as_retriever(search_kwargs={"k": 3})
-# llm = ChatOpenAI(model="gpt-4o", temperature=0.2)
-# qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever, return_source_documents=True)
-#
-# question = st.text_input("Ask a question about a synthetic patient")
-#
-# if question:
-#     with st.spinner("Thinking..."):
-#         result = qa_chain(question)
-#         st.subheader("💡 Answer")
-#         st.write(result['result'])
-#
-#         st.subheader("📄 Sources")
-#         for doc in result['source_documents']:
-#             st.write(doc.metadata)
-
 import streamlit as st
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+import pandas as pd
 from langchain.chains import RetrievalQA
-from langchain_chroma import Chroma
+from langchain_openai import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+from clarifier_chain import get_clarification_chain
+from visualization import plot_medical_timeline, format_labs_vitals
 
-# Page Config
-st.set_page_config(page_title="🩺 Medical QA Agent", page_icon="💬", layout="centered")
+st.set_page_config(page_title="Medical QA Agent", layout="wide")
+st.title("🩺 Medical Question Answering Agent")
 
-# Title & Description
-st.markdown("<h1 style='text-align: center;'>🩺 Medical QA Agent (Synthea)</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center;'>Ask natural language questions about synthetic patient records generated using Synthea. Powered by GPT-4o + ChromaDB + LangChain.</p>", unsafe_allow_html=True)
-
-# Initialize components
 embedding = OpenAIEmbeddings()
 vectordb = Chroma(persist_directory="chroma_store", embedding_function=embedding)
 retriever = vectordb.as_retriever(search_kwargs={"k": 3})
 llm = ChatOpenAI(model="gpt-4o", temperature=0.2)
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever, return_source_documents=True)
 
-# Text Area for user question
-st.markdown("### 🧾 Enter Your Question")
-question = st.text_area("Example: What conditions does patient 1234abcd have?", height=100)
+clarifier = get_clarification_chain()
 
-# Show answer
+question = st.text_area("Ask a medical question about a synthetic patient:", height=100)
+
 if question.strip():
-    with st.spinner("🤖 Thinking..."):
+    # clarification = clarifier.run(question)
+    # st.markdown("**🤔 Clarification / Context:**")
+    # st.info(clarification)
+
+    with st.spinner("Generating answer..."):
         result = qa_chain(question)
+        st.subheader("💡 Answer")
+        st.success(result["result"])
 
-        st.markdown("### 💡 Answer")
-        st.success(result['result'])
 
-        st.markdown("### 📄 Source Documents")
-        for i, doc in enumerate(result['source_documents']):
-            with st.expander(f"Source {i+1} — Patient ID: {doc.metadata.get('patient_id', 'N/A')}"):
-                st.text(doc.page_content)
+st.markdown("---")
+st.markdown("### 🔍 Explore Patient Labs and Timeline")
+pid = st.text_input("Enter Patient ID to view labs and history timeline")
+if pid:
+    try:
+        obs = pd.read_csv("data/observations.csv")
+        cond = pd.read_csv("data/conditions.csv")
+
+        patient_obs = obs[obs["PATIENT"] == pid]
+        patient_cond = cond[cond["PATIENT"] == pid]
+
+        st.markdown("#### 🧪 Lab & Vitals Summary")
+        df = format_labs_vitals(patient_obs)
+        st.dataframe(df, use_container_width=True)
+
+        st.markdown("#### 🩺 Condition Timeline")
+        fig = plot_medical_timeline(patient_cond)
+        st.plotly_chart(fig, use_container_width=True)
+    except Exception as e:
+        st.error(f"Error loading patient data: {e}")

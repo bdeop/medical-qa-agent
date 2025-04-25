@@ -14,7 +14,6 @@ def load_synthea_data():
         profile += f"Gender: {patient_info['GENDER']}, Birthdate: {patient_info['BIRTHDATE']}\n"
         profile += f"Conditions:\n"
         for _, row in patient_conditions.iterrows():
-            #profile += f" - {row['DESCRIPTION']}\n"
             start = row.get('START', 'N/A')
             stop = row.get('STOP', 'N/A')
             profile += f" - {row['DESCRIPTION']} (Start: {start}, Stop: {stop})\n"

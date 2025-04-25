@@ -32,7 +32,7 @@ cd medical_qa_agent
 python3 -m venv myenv
 source myenv/bin/activate
 pip install --upgrade pip
-pip install -r scripts/requirements.txt
+pip install -r requirements.txt
 deactivate
 ```
 
