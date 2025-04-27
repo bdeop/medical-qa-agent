@@ -1,0 +1,20 @@
+@startuml
+start
+:Load Synthea Data (patients.csv, conditions.csv, observations.csv);
+:Merge conditions + observations per patient;
+:Create unified patient context text;
+
+:Split into chunks (~1000 tokens);
+:Embed chunks with OpenAI Embeddings;
+:Store embeddings in ChromaDB;
+
+:User submits medical question;
+:Retrieve top-k relevant chunks from ChromaDB;
+:Compose prompt with context + question;
+
+:Send prompt to GPT-4o;
+:Generate answer using retrieved knowledge;
+
+:Display answer, sources, labs, timeline;
+stop
+@enduml

@@ -1,14 +1,15 @@
 @startuml
 actor User
-participant UI as "Streamlit UI"
-participant Retriever as "ChromaDB"
-participant Embedding as "OpenAI Embedding"
-participant LLM as "GPT-4o"
+participant "Streamlit UI" as UI
+participant "LangChain RAG" as LangChain
+participant "ChromaDB" as ChromaDB
+participant "OpenAI LLM" as LLM
 
-User -> UI : Enters query
-UI -> Retriever : Retrieve top-k documents
-Retriever -> Embedding : Match with embedded vectors
-UI -> LLM : Send query with retrieved context
-LLM -> UI : Return generated answer
-UI -> User : Display answer and source documents
+User -> UI : Enter question
+UI -> LangChain : qa_chain.run(question)
+LangChain -> ChromaDB : Retrieve top-k docs
+ChromaDB -> LangChain : Return condition + observation docs
+LangChain -> LLM : Compose prompt and query
+LLM -> LangChain : Return answer
+LangChain -> UI : Show answer
 @enduml
