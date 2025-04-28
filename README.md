@@ -89,3 +89,19 @@ source myenv/bin/activate
 - Suggest a preventive health care plan for patient Donnell534 Dicki44 
 - Summarize the health and Create a preventive health plan for patient Donnell534 Dicki44 looking at the health conditions and the observations of this patient.
 - Why is this patient Donnell534 Dicki44 at risk for cardiovascular complications? 
+
+## Example Outputs
+
+### Example 1: Why is this patient Donnell534 Dicki44 at risk for cardiovascular complications?
+![img.png](images/example1.png)
+
+### Example 2: Summarize the current health conditions and diagnostics of patient Ezequiel972 Hyatt152
+![img.png](images/example2.png)
+
+### Example 3: Suggest a preventive healthcare plan for patient Ezequiel972 Hyatt152
+![img.png](images/example3.png)
+
+### Example 4: Explore Patient Labs and Medical History Timeline
+
+![img.png](images/example4.png)
+
